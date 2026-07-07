@@ -33,7 +33,10 @@ if df is not None:
                   help= "Gemini's 1-10 Confidence Rating",
                   format="%d",
                   min_value=0,
-                  max_value=10,)}
+                  max_value=10,),
+              "Current price":st.column_config.NumberColumn(
+                "Last Traded Price",
+                format="₹%.2f"}
                 )
 else:
   st.info("Waiting for data stream... Make sure your google Sheet link is pasted correctly above")
