@@ -4,6 +4,14 @@ import pandas as pd
 #1. Page Configuration (Makes it look clean and widescreen)
 st.set_page_config(page_title="AI Portfolio Dashboard", layout="wide", initial_sidebar_state="expanded")
 
+# Custom CSS for clean UI styling
+st.markdown("""
+    <style>
+    .metric-container {background-color: #f0f2f6; padding: 15px; border-radius: 10px;}
+    .verdict-box {background-color: #f9f9f9; padding: 20px; border-radius: 10px; border-left: 5px solid #1E88E5;}
+    </style>
+  """, unsafe_style_html=True)
+
 #2. Main Title
 st.title("AI Quantitative Portfolio Analyst")
 st.markdown("---")
