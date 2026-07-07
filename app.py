@@ -32,7 +32,7 @@ if df is not None:
                   "AI Conviction Score",
                   help= "Gemini's 1-10 Confidence Rating",
                   min_value=0,
-                  max_value:10,)}
+                  max_value=10,)}
                 )
 else:
   st.info("Waiting for data stream... Make sure your google Sheet link is pasted correctly above")
