@@ -26,6 +26,6 @@ df = load_data()
 if df is not None:
   st.subheader("Live Portfolio Analytics")
   #Displays your entire sheet beautifully
-  st.dataframe(df, use_container_width=True)
+  st.dataframe(df, use_container_width=True, hide_index=True)
 else:
   st.info("Waiting for data stream... Make sure your google Sheet link is pasted correctly above")
