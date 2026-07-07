@@ -28,7 +28,7 @@ if df is not None:
   #Displays your entire sheet beautifully
   st.dataframe(df, use_container_width=True, hide_index=True,
               column_config={
-                score_col: st.column_config.ProgressColumn(
+                "Confidence Score": st.column_config.ProgressColumn(
                   "AI Conviction Score",
                   help= "Gemini's 1-10 Confidence Rating",
                   min_value=0,
