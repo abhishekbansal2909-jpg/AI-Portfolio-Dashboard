@@ -36,10 +36,7 @@ if df is not None:
                   max_value=10,),
               "Current price":st.column_config.NumberColumn(
                 "Last Traded Price",
-                format="₹%.2f"),
-                "AI Verdict": st.column_config.TextColumn(
-                  "AI Strategic Analysis",
-                  width="Large")
+                format="₹%.2f")
               }
                 )
 else:
