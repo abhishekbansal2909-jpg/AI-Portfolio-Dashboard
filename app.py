@@ -36,7 +36,8 @@ if df is not None:
                   max_value=10,),
               "Current price":st.column_config.NumberColumn(
                 "Last Traded Price",
-                format="₹%.2f"}
+                format="₹%.2f")
+              }
                 )
 else:
   st.info("Waiting for data stream... Make sure your google Sheet link is pasted correctly above")
