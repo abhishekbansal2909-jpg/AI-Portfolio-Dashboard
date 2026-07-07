@@ -31,6 +31,7 @@ if df is not None:
                 "Confidence Score": st.column_config.ProgressColumn(
                   "AI Conviction Score",
                   help= "Gemini's 1-10 Confidence Rating",
+                  format="%d",
                   min_value=0,
                   max_value=10,)}
                 )
