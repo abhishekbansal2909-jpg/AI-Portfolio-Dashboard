@@ -77,7 +77,7 @@ if df is not None:
     if 'bullish' in val_str:
       return 'color: #00FF00' #Bright Green
     elif 'bearish' in val_str:
-      return 'color: #FF4B4B; #bright red
+      return 'color: #FF4B4B' #bright red
     return ''
 
   styled_df = df.style.map(color_verdict, subest = ['AI Verdict'])
