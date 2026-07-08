@@ -26,6 +26,23 @@ df = load_data()
 if df is not None:
   st.subheader("Live Portfolio Analytics")
 
+  #Interactive Filter Section
+
+st.subheader("Asset Search")
+
+# Create a unique list of companies, adding an "All Assets" option at the front
+company_list = ["All Assets"] + df['Company Name'].str.strip().unique().tolist()
+
+# Generates the drop down menu
+selected_company = st.selectbox("Select a company to analyze:", company_list)
+
+# Filter the data based on the uesr's selection
+if selected_company != "All Assets":
+  df = df[df['Company Name'].str.strip() == selected_company]
+
+st.markdown("---")
+  
+
   #--KPI Cards Section---
   st.subheader("Portfolio Health Check")
   col1, col2, col3 = st.columns(3)
@@ -43,7 +60,7 @@ if df is not None:
     technical_count = len(df[df['Analysis Type'].str.strip() == 'Technical'])
     st.metric(label="Technical Setups",value = technical_count)
 
-  st.markdown("---") #adds a clen dividing line before the table
+  st.markdown("---") #adds a clean dividing line before the table
 
   #----------------------
   
