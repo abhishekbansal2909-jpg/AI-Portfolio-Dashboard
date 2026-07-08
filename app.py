@@ -56,11 +56,11 @@ with col2:
     fundamental_count = len(df[df['Analysis Type'].str.strip() == 'Fundamental'])
     st.metric(label="Fundamental Setups",value = fundamental_count)
 
-  with col3:
+with col3:
     technical_count = len(df[df['Analysis Type'].str.strip() == 'Technical'])
     st.metric(label="Technical Setups",value = technical_count)
 
-  st.markdown("---") #adds a clean dividing line before the table
+st.markdown("---") #adds a clean dividing line before the table
 
   #----------------------
   
