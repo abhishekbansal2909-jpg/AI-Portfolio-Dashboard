@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from data_manager import load_and_clean_data
+from ui_components import color_verdict, display_chart
 
 #1. Page Configuration (Makes it look clean and widescreen)
 st.set_page_config(page_title="AI Portfolio Dashboard", layout="wide", initial_sidebar_state="expanded")
@@ -55,22 +56,11 @@ if df is not None:
 
   #----------------------
 
-  #Visual Bar Chart Selection
-  st.subheader("Portfolio Conviction Breakdown")
-  st.bar_chart(df, x="Company Name", y="Confidence Score")
-  st.markdown("---")
+  display_chart(df)
 
   # Add this line here to sort the data(change "confidence Score" to match your exact google sheet column name)
   df=df.sort_values(by="Confidence Score", ascending = False)
-
-  #conditional formatting section
-  def color_verdict(val):
-    val_str = str(val).lower()
-    if 'bullish' in val_str:
-      return 'color: #00FF00' #Bright Green
-    elif 'bearish' in val_str:
-      return 'color: #FF4B4B' #bright red
-    return ''
+  
 
   styled_df = df.style.map(color_verdict, subset = ['AI Verdict'])
   
