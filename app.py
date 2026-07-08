@@ -27,20 +27,19 @@ if df is not None:
   st.subheader("Live Portfolio Analytics")
 
   #Interactive Filter Section
+  st.subheader("Asset Search")
 
-st.subheader("Asset Search")
+  # Create a unique list of companies, adding an "All Assets" option at the front
+  company_list = ["All Assets"] + df['Company Name'].str.strip().unique().tolist()
 
-# Create a unique list of companies, adding an "All Assets" option at the front
-company_list = ["All Assets"] + df['Company Name'].str.strip().unique().tolist()
-
-# Generates the drop down menu
-selected_company = st.selectbox("Select a company to analyze:", company_list)
-
-# Filter the data based on the uesr's selection
-if selected_company != "All Assets":
-  df = df[df['Company Name'].str.strip() == selected_company]
-
-st.markdown("---")
+  # Generates the drop down menu
+  selected_company = st.selectbox("Select a company to analyze:", company_list)
+  
+  # Filter the data based on the uesr's selection
+  if selected_company != "All Assets":
+    df = df[df['Company Name'].str.strip() == selected_company]
+  
+  st.markdown("---")
   
 
   #--KPI Cards Section---
@@ -82,4 +81,4 @@ st.dataframe(df, use_container_width=True, hide_index=True,
               }
                 )
 else:
-st.info("Waiting for data stream... Make sure your google Sheet link is pasted correctly above")
+  st.info("Waiting for data stream... Make sure your google Sheet link is pasted correctly above")
