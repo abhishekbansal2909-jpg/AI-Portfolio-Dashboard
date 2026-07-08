@@ -51,7 +51,7 @@ with col1:
     total_assets = len(df)
     st.metric(label="Total Assets Monitored", value= total_assets)
 
-  with col2:
+with col2:
     #Assuming your column is named exactly "Analysis Type"
     fundamental_count = len(df[df['Analysis Type'].str.strip() == 'Fundamental'])
     st.metric(label="Fundamental Setups",value = fundamental_count)
