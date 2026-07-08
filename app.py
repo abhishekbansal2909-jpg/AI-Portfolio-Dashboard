@@ -63,6 +63,11 @@ if df is not None:
 
   #----------------------
 
+  #Visual Bar Chart Selection
+  st.subheader("Portfolio Conviction Breakdown")
+  st.bar_chart(df, x="Company Name", y="Confidence Score")
+  st.markdown("---")
+
   # Add this line here to sort the data(change "confidence Score" to match your exact google sheet column name)
   df=df.sort_values(by="Confidence Score", ascending = False)
   
