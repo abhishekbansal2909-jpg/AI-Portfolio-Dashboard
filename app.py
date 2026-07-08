@@ -44,7 +44,7 @@ st.markdown("---")
   
 
   #--KPI Cards Section---
-  st.subheader("Portfolio Health Check")
+st.subheader("Portfolio Health Check")
   col1, col2, col3 = st.columns(3)
 
   with col1:
