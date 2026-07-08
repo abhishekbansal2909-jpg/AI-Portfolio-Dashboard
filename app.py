@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from data_manager import load_and_clean_data
 
 #1. Page Configuration (Makes it look clean and widescreen)
 st.set_page_config(page_title="AI Portfolio Dashboard", layout="wide", initial_sidebar_state="expanded")
@@ -11,16 +12,7 @@ st.markdown("---")
 #3. Connect to your Live Data
 CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTUEBKe4VMr2NyAhlfw4uzeX2GIbbC8Tu_aUEGmHtpOxRmxE7Re_uxVu_0BB2vY_xcwwDWfRpmJkCV/pub?gid=0&single=true&output=csv"
 
-@st.cache_data(ttl=60) # This refreshes the data every 60 seconds
-def load_data():
-  try:
-    data = pd.read_csv(CSV_URL)
-    return data
-  except Exception as e:
-    st.error(f"Error loading this data: {e}")
-    return None
-
-df = load_data()
+df = load_and_clean_data(CSV_URL)
 
 #4. Render the Data
 if df is not None:
