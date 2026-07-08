@@ -80,10 +80,10 @@ if df is not None:
       return 'color: #FF4B4B' #bright red
     return ''
 
-  styled_df = df.style.map(color_verdict, subest = ['AI Strategic Analysis'])
+  styled_df = df.style.map(color_verdict, subset = ['AI Verdict'])
   
   #Displays your entire sheet beautifully
-  st.dataframe(df, use_container_width=True, hide_index=True,
+  st.dataframe(styled_df, use_container_width=True, hide_index=True,
               column_config={
                 "Confidence Score": st.column_config.ProgressColumn(
                   "AI Conviction Score",
