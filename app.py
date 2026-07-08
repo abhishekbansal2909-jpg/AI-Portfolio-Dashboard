@@ -80,5 +80,6 @@ st.dataframe(df, use_container_width=True, hide_index=True,
                   width="large")
               }
                 )
+
 else:
   st.info("Waiting for data stream... Make sure your google Sheet link is pasted correctly above")
