@@ -80,7 +80,7 @@ if df is not None:
       return 'color: #FF4B4B' #bright red
     return ''
 
-  styled_df = df.style.map(color_verdict, subest = ['AI Verdict'])
+  styled_df = df.style.map(color_verdict, subest = ['AI Strategic Analysis'])
   
   #Displays your entire sheet beautifully
   st.dataframe(df, use_container_width=True, hide_index=True,
