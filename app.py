@@ -70,6 +70,17 @@ if df is not None:
 
   # Add this line here to sort the data(change "confidence Score" to match your exact google sheet column name)
   df=df.sort_values(by="Confidence Score", ascending = False)
+
+  #conditional formatting section
+  def color_verdict(val):
+    val_str = str(val).lower()
+    if 'bullish' in val_str:
+      return"color: #00FF00' #Bright Green
+    elif 'bearish' in val_str:
+      return 'color: #FF4B4B; #bright red
+    return ''
+
+  styled_df = df.style.map(color_verdict, subest = ['AI Verdict'])
   
   #Displays your entire sheet beautifully
   st.dataframe(df, use_container_width=True, hide_index=True,
