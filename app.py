@@ -64,7 +64,7 @@ if df is not None:
   #----------------------
 
   # Add this line here to sort the data(change "confidence Score" to match your exact google sheet column name)
-  df=df.sort_values(by="Confidence Score"), ascending = False)
+  df=df.sort_values(by="Confidence Score", ascending = False)
   
   #Displays your entire sheet beautifully
   st.dataframe(df, use_container_width=True, hide_index=True,
