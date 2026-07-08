@@ -65,7 +65,7 @@ st.markdown("---") #adds a clean dividing line before the table
   #----------------------
   
   #Displays your entire sheet beautifully
-  st.dataframe(df, use_container_width=True, hide_index=True,
+st.dataframe(df, use_container_width=True, hide_index=True,
               column_config={
                 "Confidence Score": st.column_config.ProgressColumn(
                   "AI Conviction Score",
