@@ -75,7 +75,7 @@ if df is not None:
   def color_verdict(val):
     val_str = str(val).lower()
     if 'bullish' in val_str:
-      return"color: #00FF00' #Bright Green
+      return 'color: #00FF00' #Bright Green
     elif 'bearish' in val_str:
       return 'color: #FF4B4B; #bright red
     return ''
