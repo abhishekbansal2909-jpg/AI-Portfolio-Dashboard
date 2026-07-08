@@ -43,28 +43,28 @@ if df is not None:
   
 
   #--KPI Cards Section---
-st.subheader("Portfolio Health Check")
-col1, col2, col3 = st.columns(3)
+  st.subheader("Portfolio Health Check")
+  col1, col2, col3 = st.columns(3)
 
-with col1:
+  with col1:
     total_assets = len(df)
     st.metric(label="Total Assets Monitored", value= total_assets)
 
-with col2:
+  with col2:
     #Assuming your column is named exactly "Analysis Type"
     fundamental_count = len(df[df['Analysis Type'].str.strip() == 'Fundamental'])
     st.metric(label="Fundamental Setups",value = fundamental_count)
 
-with col3:
+  with col3:
     technical_count = len(df[df['Analysis Type'].str.strip() == 'Technical'])
     st.metric(label="Technical Setups",value = technical_count)
 
-st.markdown("---") #adds a clean dividing line before the table
+  st.markdown("---") #adds a clean dividing line before the table
 
   #----------------------
   
   #Displays your entire sheet beautifully
-st.dataframe(df, use_container_width=True, hide_index=True,
+  st.dataframe(df, use_container_width=True, hide_index=True,
               column_config={
                 "Confidence Score": st.column_config.ProgressColumn(
                   "AI Conviction Score",
