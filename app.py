@@ -36,12 +36,12 @@ if df is not None:
 
   with col2:
     #Assuming your column is named exactly "Analysis Type"
-    fundamental_count = len(df[df['Analysis Type'] == 'Fundamental'])
+    fundamental_count = len(df[df['Analysis Type'].str.strip() == 'Fundamental'])
     st.metric(label="Fundamental Setups",value = fundamental_count)
 
   with col3:
-    technical_count = len(df[df['Analysis Type'] == 'Technical'])
-    st.metric(label="Technical Setups",value= technical_count)
+    technical_count = len(df[df['Analysis Type'].str.strip() == 'Technical'])
+    st.metric(label="Technical Setups",value = technical_count)
 
   st.markdown("---") #adds a clen dividing line before the table
 
