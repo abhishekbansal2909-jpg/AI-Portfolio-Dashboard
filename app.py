@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from data_manager import load_and_clean_data
 from ui_components import color_verdict, display_chart
+import migrate_data
 
 #1. Page Configuration (Makes it look clean and widescreen)
 st.set_page_config(page_title="AI Portfolio Dashboard", layout="wide", initial_sidebar_state="expanded")
