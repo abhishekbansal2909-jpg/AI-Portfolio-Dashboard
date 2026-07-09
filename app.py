@@ -84,3 +84,26 @@ if df is not None:
                 )
 else:
   st.info("Waiting for data stream... Make sure your google Sheet link is pasted correctly above")
+
+import os
+import sqlite3
+
+st.markdown("---")
+st.subheader("System Diagnostics")
+
+if os.path.exists('portfolio.db'):
+  st.success("Vault Check: Its running")
+  
+  conn = sqlite3.connect('portfolio.db')
+  cursor = conn.cursor()
+  
+  cursor.execute("SELECT name FROM sqlite_master WHERE type='table':")
+  tables = cursor.fetchall()
+  
+  st.info(f"Inside the vault, found these tables: {tables}")
+  
+  conn.closed()
+
+else:
+  st.error("Database not found")
+
