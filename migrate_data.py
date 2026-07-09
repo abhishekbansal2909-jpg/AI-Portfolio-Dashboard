@@ -1,8 +1,10 @@
 import pandas as pd
 import sqlite3
 
-CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTUEBKe4VMr2NyAhlfw4uzeX2GIbbC8Tu_aUEGmHtpOxRmxE7Re_uxVu_0BB2vY_xcwwDWfRpmJkCV/pub?gid=0&single=true&output=csv"
-df = pd.read.csv(CSV_URL)
+sheet_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTUEBKe4VMr2NyAhlfw4uzeX2GIbbC8Tu_aUEGmHtpOxRmxE7Re_uxVu_0BB2vY_xcwwDWfRpmJkCV/pub?gid=0&single=true&output=csv"
+
+CSV_URL = sheet_url.replace('edit?usp=sharing', '/export?format=csv')
+df = pd.read_csv(CSV_URL)
 
 df['Company Name'] = df['Company Name'].str.strip()
 df['Analysis Type'] = df['Analysis Type'].str.strip()
