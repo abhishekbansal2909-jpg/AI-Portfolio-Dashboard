@@ -5,6 +5,7 @@ sheet_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTUEBKe4VMr2NyAhlf
 
 CSV_URL = sheet_url.replace('edit?usp=sharing', '/export?format=csv')
 df = pd.read_csv(CSV_URL)
+df.columns = df.columns.str.strip()
 
 df['Company Name'] = df['Company Name'].str.strip()
 df['Analysis Type'] = df['Analysis Type'].str.strip()
