@@ -16,7 +16,7 @@ cursor = conn.cursor()
 for index, row in df.iterrows():
   # question marks are acting as placeholders
   cursor.execute('''
-    INSERT INTO assets (company_name, analysis_type, current_price, ai_verdict, confidence_score)
+    INSERT INTO assets (company_name, analysis_type, last_traded_price, ai_verdict, confidence_score)
     VALUES (?,?,?,?,?) 
   ''',(
     row['Company Name'],
