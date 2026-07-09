@@ -102,7 +102,7 @@ if os.path.exists('portfolio.db'):
   
   st.info(f"Inside the vault, found these tables: {tables}")
   
-  conn.closed()
+  conn.close()
 
 else:
   st.error("Database not found")
