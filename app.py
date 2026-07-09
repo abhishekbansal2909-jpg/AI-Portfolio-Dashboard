@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from data_manager import load_and_clean_data
+from data_manager import load_data
 from ui_components import color_verdict, display_chart
 
 #1. Page Configuration (Makes it look clean and widescreen)
@@ -13,7 +13,7 @@ st.markdown("---")
 #3. Connect to your Live Data
 CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTUEBKe4VMr2NyAhlfw4uzeX2GIbbC8Tu_aUEGmHtpOxRmxE7Re_uxVu_0BB2vY_xcwwDWfRpmJkCV/pub?gid=0&single=true&output=csv"
 
-df = load_and_clean_data(CSV_URL)
+df = load_data(CSV_URL)
 
 #4. Render the Data
 if df is not None:
