@@ -13,7 +13,7 @@ st.markdown("---")
 #3. Connect to your Live Data
 CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTUEBKe4VMr2NyAhlfw4uzeX2GIbbC8Tu_aUEGmHtpOxRmxE7Re_uxVu_0BB2vY_xcwwDWfRpmJkCV/pub?gid=0&single=true&output=csv"
 
-df = load_data(CSV_URL)
+df = load_data()
 
 #4. Render the Data
 if df is not None:
