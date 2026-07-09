@@ -1,17 +1,25 @@
 import streamlit as st
 import pandas as pd
+import sqlite3
 
-@st.cache_data(ttl=60)
-def load_and_clean_data(sheet_url):
-  try:
-    csv_url = sheet_url.replace('/edit?usp=sharing','/export?format=csv')
-    df = pd.read_csv(csv_url)
+def load_data():
+  """Connects to the SQL lite, fetches data and format it for the UI."""
 
-    df['Company Name'] = df['Company Name'].str.strip()
-    df['Analysis Type'] = df['Analysis Type'].str.strip()
+  conn = sqlite3.connect('portfolio.db')
+  query = "SELECT * FROM assets"
+  df = pd.read_sql_query(query, conn)
+  conn.close()
 
-    return df
+  df = df.rename(columns={
+    'company_name': 'Company Name',
+    'analysis_type': 'Analysis Type',
+    'last_traded_price': 'Last Traded Price',
+    'ai_verdict': 'AI Verdict',
+    'confidence_score':'Confidence Score'
+  })
 
-  except Exception as e:
-    st.error(f"Error loading the database: {e}")
-    return None
+  if 'id' in df.columns:
+    df = df.drop(columns=['id'])
+  return df
+
+
