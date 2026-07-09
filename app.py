@@ -97,7 +97,7 @@ if os.path.exists('portfolio.db'):
   conn = sqlite3.connect('portfolio.db')
   cursor = conn.cursor()
   
-  cursor.execute("SELECT name FROM sqlite_master WHERE type='table':")
+  cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
   tables = cursor.fetchall()
   
   st.info(f"Inside the vault, found these tables: {tables}")
