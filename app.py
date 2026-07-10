@@ -88,6 +88,6 @@ import add_column
 import update_tickers
 import price_engine
 
-add_column.add_tickers_column()
+add_column.add_ticker_column()
 update_tickers.populate_tickers()
 price_engine.update_prices()
