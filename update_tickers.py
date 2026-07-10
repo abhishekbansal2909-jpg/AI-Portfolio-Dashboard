@@ -2,7 +2,7 @@ import sqlite3
 
 def populate_tickers():
   print("Mapping company names to Yahoo finance tickers...")
-  conn = sqlite3connect('portfolio.db')
+  conn = sqlite3.connect('portfolio.db')
   cursor = conn.cursor()
 
   ticker_map = {
