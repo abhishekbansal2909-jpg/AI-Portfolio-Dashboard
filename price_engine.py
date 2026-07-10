@@ -33,5 +33,5 @@ def update_prices():
   conn.close()
   print("Market sync complete.")
 
-if __name__ = "__main__":
+if __name__ == "__main__":
   update_prices()
