@@ -84,5 +84,10 @@ if df is not None:
 else:
   st.info("Waiting for data stream... Make sure your google Sheet link is pasted correctly above")
 
+import add_column
+import update_tickers
 import price_engine
+
+add_column.add_tickers_column()
+update_tickers.populate_tickers()
 price_engine.update_prices()
