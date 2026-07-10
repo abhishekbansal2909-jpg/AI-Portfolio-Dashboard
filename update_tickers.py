@@ -6,7 +6,7 @@ def populate_tickers():
   cursor = conn.cursor()
 
   ticker_map = {
-    'Tata Steel': 'TATASTEEL.NS',
+    'Tata steel': 'TATASTEEL.NS',
     'Adani Power': 'ADANIPOWER.NS',
     'Coal India': 'COALINDIA.NS',
     'Larsen and Toubro': 'LT.NS',
