@@ -61,12 +61,11 @@ if df is not None:
   # Add this line here to sort the data(change "confidence Score" to match your exact google sheet column name)
   df=df.sort_values(by="Confidence Score", ascending = False)
   
-
-  styled_df = df.style.map(color_verdict, subset = ['AI Verdict'])
-
   df['Last Traded Price'] = df['Last Traded Price'].apply(lambda x : f"₹{float(x):,.2f}" if pd.notnull(x) else x)
   df = df.drop(columns=['ticker'], errors = 'ignore')
   
+  styled_df = df.style.map(color_verdict, subset = ['AI Verdict'])
+
   #Displays your entire sheet beautifully
   st.dataframe(styled_df, use_container_width=True, hide_index=True,
               column_config={
