@@ -37,6 +37,6 @@ def populate_tickers():
   conn.close()
 
 if __name__ == "__main__":
-  populate_ticker()
+  populate_tickers()
 
   
