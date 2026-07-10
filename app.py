@@ -86,10 +86,3 @@ if df is not None:
 else:
   st.info("Waiting for data stream... Make sure your google Sheet link is pasted correctly above")
 
-with open("portfolio.db", "rb") as f:
-  st.download_button(
-    label = "Download Master Databse",
-    data = f,
-    file_name = "portfolio.db",
-    mime= "application/octet-stream"
-  )
