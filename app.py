@@ -65,7 +65,7 @@ if df is not None:
   styled_df = df.style.map(color_verdict, subset = ['AI Verdict'])
 
   df['Last Traded Price'] = df['Last Traded Price'].apply(lambda x : f"₹{float(x):,.2f}" if pd.notnull(x) else x)
-  df = df.drop(columns=['ticker'], error = 'ignore')
+  df = df.drop(columns=['ticker'], errors = 'ignore')
   
   #Displays your entire sheet beautifully
   st.dataframe(styled_df, use_container_width=True, hide_index=True,
