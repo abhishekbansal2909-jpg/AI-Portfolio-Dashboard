@@ -9,7 +9,7 @@ from sqlalchemy import create_engine, inspect
 #1. Page Configuration (Makes it look clean and widescreen)
 st.set_page_config(page_title="AI Portfolio Dashboard", layout="wide", initial_sidebar_state="expanded")
 
-db_url = st.secrets["DATABASE_URL"
+db_url = st.secrets["DATABASE_URL"]
 if db_url.startswith("postgres://"):
   db_url = db_url.replace("postgres://","postgresql://",1)
 engine = create_engine(db_url)
