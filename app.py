@@ -33,7 +33,7 @@ with st.sidebar.form("add_stock_form", clear_on_submit = True):
     try:
       with engine.begin() as conn:
         query = sqlalchemy.text('INSERT INTO ASSETS (company_name, ticker, analysis_type) VALUES (:company, :ticker, :analysis)')
-        conn.execute(query, {"company": new_company, "ticker.upper(), "analysis": new_analysis})
+        conn.execute(query, {"company": new_company, "ticker": new_ticker.upper(), "analysis": new_analysis})
 
       st.sidebar.success(f"Successfully added {new_ticker}!")
       st.rerun() 
