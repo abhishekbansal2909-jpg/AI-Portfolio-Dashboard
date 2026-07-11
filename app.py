@@ -20,12 +20,7 @@ with st.sidebar.form("add_stock_form", clear_on_submit = True):
     try:
       conn = sqlite3.connect('portfolio.db')
       cursor = conn.cursor()
-      cursor.execute("SELECT * FROM assets LIMIT 0")
-      db_columns = [desc[0] for desc in cursor.description]
-      st.sidebar.write(db_columns)
-      exact_company_col = [col for col in db_columns if "Company" in col][0]
-      exact_analysis_col = [col for col in db_columns if "Analysis" in col][0]
-      query = f'INSERT INTO assets ("{exact_company_col}", "ticker", "{exact_analysis_col}") VALUES (?, ?, ?)'
+      query = "INSERT INTO aasets (company_name, ticker, analysis_type) VALUES (?, ?, ?)'
       cursor.execute(query, (new_company, new_ticker.upper(), new_analysis))
  
       conn.commit()
