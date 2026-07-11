@@ -22,6 +22,7 @@ with st.sidebar.form("add_stock_form", clear_on_submit = True):
       cursor = conn.cursor()
       cursor.execute("SELECT * FROM assets LIMIT 0")
       db_columns = [desc[0] for desc in cursor.description]
+      st.sidebar.write(db_columns)
       exact_company_col = [col for col in db_columns if "Company" in col][0]
       exact_analysis_col = [col for col in db_columns if "Analysis" in col][0]
       query = f'INSERT INTO assets ("{exact_company_col}", "ticker", "{exact_analysis_col}") VALUES (?, ?, ?)'
