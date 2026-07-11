@@ -11,6 +11,14 @@ def load_data():
 
   df = pd.read_sql("SELECT * FROM assets", engine) 
 
+  df = df.rename(columns = {
+    "company_name": "Company Name",
+    "analysis_type": "Analysis Type",
+    "last_traded_price": "Lasts Traded Price",
+    "ai_verdict": "AI Verdict",
+    "confidence_score": "Confidence Score"
+  })
+
   return df
 
 
