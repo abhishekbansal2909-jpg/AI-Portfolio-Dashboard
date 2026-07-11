@@ -2,11 +2,24 @@ import streamlit as st
 import pandas as pd
 from data_manager import load_data
 from ui_components import color_verdict, display_chart
+import sqlite3
+import sqlalchemy
+from sqlalchemy import create_engine, inspect
 
 #1. Page Configuration (Makes it look clean and widescreen)
 st.set_page_config(page_title="AI Portfolio Dashboard", layout="wide", initial_sidebar_state="expanded")
 
-import sqlite3
+db_url = st.secrets["DATABASE_URL"
+if db_url.startswith("postgres://"):
+  db_url = db_url.replace("postgres://","postgresql://",1)
+engine = create_engine(db_url)
+
+inspector = inspect(engine)
+if not inspector.has_table("assets"):
+  local_conn = sqlite3.connect('portfolio.db')
+  df_old = pd.read_sql("SELECT * FROM assets", local_conn)
+  df_old.to_sql("assets", engine, index = False)
+  local_conn.close()
 
 #UI Expansion form
 st.sidebar.header("Add New Asset")
@@ -18,10 +31,9 @@ with st.sidebar.form("add_stock_form", clear_on_submit = True):
 
   if add_submit and new_company and new_ticker:
     try:
-      conn = sqlite3.connect('portfolio.db')
-      cursor = conn.cursor()
-      query = 'INSERT INTO assets (company_name, ticker, analysis_type) VALUES (?, ?, ?)'
-      cursor.execute(query, (new_company, new_ticker.upper(), new_analysis))
+      with engine.begin() as conn:
+        query = sqlalchemy.text('INSERT INTO ASSETS (company_name, ticker, analysis_type) VALUES (:company, :ticker, :analysis)')
+        conn.execute(query, {"company": new_company, "ticker.upper(), "analysis": new_analysis})
  
       conn.commit()
       conn.close()
@@ -35,9 +47,6 @@ with st.sidebar.form("add_stock_form", clear_on_submit = True):
 #2. Main Title
 st.title("AI Quantitative Portfolio Analyst")
 st.markdown("---")
-
-#3. Connect to your Live Data
-CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTUEBKe4VMr2NyAhlfw4uzeX2GIbbC8Tu_aUEGmHtpOxRmxE7Re_uxVu_0BB2vY_xcwwDWfRpmJkCV/pub?gid=0&single=true&output=csv"
 
 df = load_data()
 
