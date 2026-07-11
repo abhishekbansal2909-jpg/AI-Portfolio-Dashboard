@@ -6,6 +6,33 @@ from ui_components import color_verdict, display_chart
 #1. Page Configuration (Makes it look clean and widescreen)
 st.set_page_config(page_title="AI Portfolio Dashboard", layout="wide", initial_sidebar_state="expanded")
 
+import sqlite3
+
+#UI Expansion form
+st.sidebar.header("Add New Asset")
+with st.sidebar.form("add_stock_form", clear_on_submit = True):
+  new_company = st.text_input("Company Name (e.g., Infosys)")
+  new_ticker = st.text_input("Yahoo Finance Ticker (e.g., INFY.NS)")
+  new_analysis = st.selectbox("Analysis Type", ["Fundamental", "Technical"])
+  add_submit = st.form_submit_button("Add to Vault")
+
+  if add_submit and new_company and new_ticker:
+    try:
+      conn = sqlite3.connect('portfolio.db')
+      cursor = conn.cursor()
+      cursor.execute("""
+        INSERT INTO assets ("Company Name", "ticker", "Analysis Type")
+        VALUES(?, ?, ?)
+      """, (new_company, new_ticker.upper(), new_analysis))
+      conn.commit()
+      conn.close()
+
+      st.sidebar.success(f"Successfully added {new_ticker}!")
+      st.rerun() 
+
+    except Exception as e:
+      st.sidebar.error(f"Database error: {e}")
+
 #2. Main Title
 st.title("AI Quantitative Portfolio Analyst")
 st.markdown("---")
