@@ -19,6 +19,9 @@ def load_data():
     "confidence_score": "Confidence Score"
   })
 
+
+  df = df.drop(columns = ['id'], errors = 'ignore')
+  
   return df
 
 
