@@ -1,25 +1,16 @@
 import streamlit as st
 import pandas as pd
-import sqlite3
-
+import sqlalchemy
+from sqlalchemy import create_engine
 def load_data():
-  """Connects to the SQL lite, fetches data and format it for the UI."""
+  db_url = st.secrets["DATABASE_URL"]
+  if db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
 
-  conn = sqlite3.connect('portfolio.db')
-  query = "SELECT * FROM assets"
-  df = pd.read_sql_query(query, conn)
-  conn.close()
+  engine = create_engine(db_url)
 
-  df = df.rename(columns={
-    'company_name': 'Company Name',
-    'analysis_type': 'Analysis Type',
-    'last_traded_price': 'Last Traded Price',
-    'ai_verdict': 'AI Verdict',
-    'confidence_score':'Confidence Score'
-  })
+  df = pd.read_sql("SELECT * FROM assets", engine) 
 
-  if 'id' in df.columns:
-    df = df.drop(columns=['id'])
   return df
 
 
