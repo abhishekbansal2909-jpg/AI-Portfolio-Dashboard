@@ -14,7 +14,7 @@ def load_data():
   df = df.rename(columns = {
     "company_name": "Company Name",
     "analysis_type": "Analysis Type",
-    "last_traded_price": "Lasts Traded Price",
+    "last_traded_price": "Last Traded Price",
     "ai_verdict": "AI Verdict",
     "confidence_score": "Confidence Score"
   })
