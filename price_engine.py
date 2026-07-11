@@ -9,7 +9,7 @@ def update_prices():
   print("Initiating market sync...")
 
   db_url = os.environ.get("DATABASE_URL")
-  if db_url and db_url.startswith("postgres://):
+  if db_url and db_url.startswith("postgres://"):
     db_url = db_url.replace("postgres://", "postgresql://", 1)
   engine = create_engine(db_url)
   df = pd.read_sql_query("SELECT id, ticker FROM assets where ticker is NOT NULL", engine)
