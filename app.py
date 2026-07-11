@@ -93,6 +93,8 @@ if df is not None:
   
   styled_df = df.style.map(color_verdict, subset = ['AI Verdict'])
 
+  st.write(df.columns.tolist())
+  
   #Displays your entire sheet beautifully
   st.dataframe(styled_df, use_container_width=True, hide_index=True,
               column_config={
