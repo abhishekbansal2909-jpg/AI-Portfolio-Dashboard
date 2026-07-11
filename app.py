@@ -20,7 +20,7 @@ with st.sidebar.form("add_stock_form", clear_on_submit = True):
     try:
       conn = sqlite3.connect('portfolio.db')
       cursor = conn.cursor()
-      query = "INSERT INTO assets (company_name, ticker, analysis_type) VALUES (?, ?, ?)'
+      query = 'INSERT INTO assets (company_name, ticker, analysis_type) VALUES (?, ?, ?)'
       cursor.execute(query, (new_company, new_ticker.upper(), new_analysis))
  
       conn.commit()
