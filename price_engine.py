@@ -25,9 +25,9 @@ def update_prices():
         query = text('''
           UPDATE assets
           SET last_traded_price = :price
-          WHERE id = :id
+          WHERE ticker = :ticker
         ''')
-        conn.execute(query, {"price": current_price, "id": row ['id']})
+        conn.execute(query, {"price": current_price, "ticker": ticker_symbol})
         
         print(f"Updated {ticker_symbol} to ₹{round(current_price, 2)}")
   
