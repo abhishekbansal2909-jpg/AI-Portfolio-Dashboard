@@ -83,9 +83,46 @@ def run_ai_analysis():
         14-Day RSI: {rsi}
         Recent News Headlines: {news_headlines}
         Analyze this stock using the provided real-time fundamental metrics and technical moving averages. Assess its valuation (using the P/ E ratio) and its current price momentum relative to its 52-week highs and lows and its technical trend(is the current price above or below its 50-day moving average and 200 day moving averages?). Write a punchy, 3- sentence summary of its current financial health and technical momentum, declaring if it is a buy, hold or overvalued.
-        
-        
+        Factor in the recent news headlines: is the sentiment bullish, bearish or neutral? Does it justify the current technical momentum?
+        Crucially factor in the 14-day RSI: if it is above 70, flag it as technically overbought and if it below 30, flag it as technically oversold and a potential entry point.
+        Custom Thesis Guardrails:
+        Rule 1: If the P?E ratio is greater than 35, the maximum score you can assign is 4, regardless of technical momentum.
+        Rule 2: An RSI below 30 combined with bullish news sentiment is a "High Conviction Setup". Immediately flag this in your verdict. 
+        Return the response exactly in this format:
+        Verdict:[your 3 sentence Summary analysis here]
+        Score:[Insert a number here from 1 to 10]
+        Yield:[Insert current dividend/distribution yield percentage, e.g,. 7.5%]
+        Frequency:[Insert how often they pay out, e.g., Quaterly or Bi-Annualy]
+        Consistency:[State whether payouts are stable, growing or fluctuating]
 
-        
+        response = model.generate_content(prompt)
+
+        output_lines = response.text.strip().split('\n')
+        output_lines = [line for line in output_lines if line.strip()]  # remove empty lines
+
+        verdict = output_lines[0].replace('[','').replace(']','').strip()
+        score_str = output_lines[-1].replace('[','').replace(']','').strip()
+
+        try:
+          score = int('',join(filter(str.isdigit, score_str)))
+        except ValueError:
+          score = 5 #default dafety score
+
+        # save to database
+        update_query = text('''
+                                  UPDATE assets
+                                  SET ai_startegic_analysis = : verdict,
+                                      confidence_score = :score
+                                  Where ticker = :ticker
+        ''')
+
+        conn.execute(update_query, {"verdict", verdict, "score", score, "ticker", ticker_sym})
+
+        print(f"Successfully generated analysis for {ticker_sym}. Score: {score}")
+        time.sleep(3)  #brief pause for gemini
+
+      except Exception as e:
+        print(f"Failed to analyze {ticker_sym}. Error : {e}")
+                
 If __name__ = "__main__":
   run_ai_analysis()
