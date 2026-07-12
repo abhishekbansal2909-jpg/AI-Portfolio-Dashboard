@@ -21,11 +21,17 @@ jobs:
 
         run: |
          python -m pip install --upgrade pip
-         pip install yfinance pandas sqlalchemy psycopg2-binary
+         pip install yfinance pandas sqlalchemy psycopg2-binary google-generativeai
 
       - name: Run Price Engine
         run: python price_engine.py
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL}}
+
+      - name: Run AI Engine
+        run: Python ai_engine.py
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL}}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY}}
 
   
