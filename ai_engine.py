@@ -57,3 +57,19 @@ def run_ai_analysis():
 
         pe_ratio = info.get('trailingPE', info.get('forwardPE', 'N/A'))
         market_cap = fast_info.get('market_cap', 'N/A')
+        high_52 = fast_info.get('year_high','N/A')
+        low_52 = fast_info.get(year_low','N/A')
+        ma50 = fast_info.get('fifty_day_average','N/A')
+        ma200 = fast_info.get('two_hundred_day_average','N/A')
+        rsi = get_rsi(ticker_sym)
+
+        #pull top3 news on ticker
+        news_list = ticker.news
+        news_headlines = "\n".join([n['title'] for n in news_list[:3]]) if news_list else "No recent news available."
+
+        if pe_ratio != 'N\A': pe_ratio = round(pe_ratio, 2)
+
+        # Master Prompt
+        prompt = f"""
+        Act as a Professional quantitative financial analyst focusing on the Indian Stock Market, specializing in equities, REITs and INVITs.
+        
