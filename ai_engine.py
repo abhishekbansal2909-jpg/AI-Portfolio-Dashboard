@@ -59,8 +59,8 @@ def run_ai_analysis():
         market_cap = fast_info.get('market_cap', 'N/A')
         high_52 = fast_info.get('year_high','N/A')
         low_52 = fast_info.get(year_low','N/A')
-        ma50 = fast_info.get('fifty_day_average','N/A')
-        ma200 = fast_info.get('two_hundred_day_average','N/A')
+        ma_50 = fast_info.get('fifty_day_average','N/A')
+        ma_200 = fast_info.get('two_hundred_day_average','N/A')
         rsi = get_rsi(ticker_sym)
 
         #pull top3 news on ticker
@@ -72,4 +72,20 @@ def run_ai_analysis():
         # Master Prompt
         prompt = f"""
         Act as a Professional quantitative financial analyst focusing on the Indian Stock Market, specializing in equities, REITs and INVITs.
+        Company Name: {company}
+        Ticker Symbol: {ticker_sym}
+        Valuation (P/E): {pe_ratio}
+        Market Cap: {market_cap}
+        52 Week High: {high_52}
+        52 Week Low: {low_52}
+        50-Day Moving Average: {ma_50}
+        200-Day Moving Average: {ma_200}
+        14-Day RSI: {rsi}
+        Recent News Headlines: {news_headlines}
+        Analyze this stock using the provided real-time fundamental metrics and technical moving averages. Assess its valuation (using the P/ E ratio) and its current price momentum relative to its 52-week highs and lows and its technical trend(is the current price above or below its 50-day moving average and 200 day moving averages?). Write a punchy, 3- sentence summary of its current financial health and technical momentum, declaring if it is a buy, hold or overvalued.
         
+        
+
+        
+If __name__ = "__main__":
+  run_ai_analysis()
