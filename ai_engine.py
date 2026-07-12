@@ -34,7 +34,7 @@ def run_ai_analysis():
     SELECT id, ticker, company_name
     FROM assets
     WHERE ticker is NOT NULL
-    AND (ai_strategic_analysis is NULL OR confidence_score IS NULL)
+    AND (ai_verdict is NULL OR confidence_score IS NULL)
   """
 
   df = pd.read_sql_query(query, engine)
@@ -111,7 +111,7 @@ def run_ai_analysis():
         # save to database
         update_query = text('''
                                   UPDATE assets
-                                  SET ai_startegic_analysis = : verdict,
+                                  SET ai_verdict = :verdict,
                                       confidence_score = :score
                                   Where ticker = :ticker
         ''')
