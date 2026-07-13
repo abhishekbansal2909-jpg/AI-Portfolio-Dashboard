@@ -101,10 +101,10 @@ def run_ai_analysis():
         output_lines = [line for line in output_lines if line.strip()]  # remove empty lines
 
         verdict = output_lines[0].replace('[','').replace(']','').strip()
-        score_str = output_lines[-1].replace('[','').replace(']','').strip()
+        score_str = output_lines[1].replace('[','').replace(']','').strip()
 
         try:
-          score = int('',join(filter(str.isdigit, score_str)))
+          score = int(''.join(filter(str.isdigit, score_str)))
         except ValueError:
           score = 5 #default safety score
 
