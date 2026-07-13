@@ -8,7 +8,7 @@ import google.generativeai as genai
 def get_rsi(ticker_symbol):
   """Calculates 14-DAY RSI using pure pandas"""
   try:
-    data: = yf.download(ticker_symbol, period="1mo", progress = False)
+    data = yf.download(ticker_symbol, period="1mo", progress = False)
     if len(data) < 15:
       return "N/A"
     delta = data['Close'].diff()
