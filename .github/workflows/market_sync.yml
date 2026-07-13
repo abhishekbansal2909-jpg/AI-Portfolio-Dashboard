@@ -29,7 +29,7 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL}}
 
       - name: Run AI Engine
-        run: Python ai_engine.py
+        run: python ai_engine.py
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL}}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY}}
