@@ -86,15 +86,15 @@ def run_ai_analysis():
         Factor in the recent news headlines: is the sentiment bullish, bearish or neutral? Does it justify the current technical momentum?
         Crucially factor in the 14-day RSI: if it is above 70, flag it as technically overbought and if it below 30, flag it as technically oversold and a potential entry point.
         Custom Thesis Guardrails:
-        Rule 1: If the P?E ratio is greater than 35, the maximum score you can assign is 4, regardless of technical momentum.
+        Rule 1: If the P/E ratio is greater than 35, the maximum score you can assign is 4, regardless of technical momentum.
         Rule 2: An RSI below 30 combined with bullish news sentiment is a "High Conviction Setup". Immediately flag this in your verdict. 
         Return the response exactly in this format:
         Verdict:[your 3 sentence Summary analysis here]
         Score:[Insert a number here from 1 to 10]
         Yield:[Insert current dividend/distribution yield percentage, e.g,. 7.5%]
-        Frequency:[Insert how often they pay out, e.g., Quaterly or Bi-Annualy]
+        Frequency:[Insert how often they pay out, e.g., Quarterly or Bi-Annually]
         Consistency:[State whether payouts are stable, growing or fluctuating]
-
+        """
         response = model.generate_content(prompt)
 
         output_lines = response.text.strip().split('\n')
@@ -106,7 +106,7 @@ def run_ai_analysis():
         try:
           score = int('',join(filter(str.isdigit, score_str)))
         except ValueError:
-          score = 5 #default dafety score
+          score = 5 #default safety score
 
         # save to database
         update_query = text('''
