@@ -116,7 +116,7 @@ def run_ai_analysis():
                                   Where ticker = :ticker
         ''')
 
-        conn.execute(update_query, {"verdict", verdict, "score", score, "ticker", ticker_sym})
+        conn.execute(update_query, {"verdict": verdict, "score": score, "ticker": ticker_sym})
 
         print(f"Successfully generated analysis for {ticker_sym}. Score: {score}")
         time.sleep(3)  #brief pause for gemini
