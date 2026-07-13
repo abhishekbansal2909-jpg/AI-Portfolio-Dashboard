@@ -28,7 +28,7 @@ def run_ai_analysis():
   engine = create_engine(db_url)
 
   genai.configure(api_key = os.environ.get("GEMINI_API_KEY"))
-  model = genai.GenerativeModel('gemini-1.5-flash')
+  model = genai.GenerativeModel('gemini-2.5-flash')
 
   query = """
     SELECT id, ticker, company_name
