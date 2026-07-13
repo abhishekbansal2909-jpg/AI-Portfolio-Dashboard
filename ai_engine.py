@@ -23,8 +23,8 @@ def get_rsi(ticker_symbol):
 def run_ai_analysis():
   print("Waking up Gemini AI engine....")
   db_url = os.environ.get("DATABASE_URL")
-  if db_url and db_url.startswith(:postgres://"):
-    db_url = db_url.replace(postgres://", "postgresql://",1)
+  if db_url and db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://",1)
   engine = create_engine(db_url)
 
   genai.configure(api_key = os.environ.get("GEMINI_API_KEY"))
