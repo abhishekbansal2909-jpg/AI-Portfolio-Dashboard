@@ -124,5 +124,5 @@ def run_ai_analysis():
       except Exception as e:
         print(f"Failed to analyze {ticker_sym}. Error : {e}")
                 
-If __name__ == "__main__":
+if __name__ == "__main__":
   run_ai_analysis()
