@@ -58,7 +58,7 @@ def run_ai_analysis():
         pe_ratio = info.get('trailingPE', info.get('forwardPE', 'N/A'))
         market_cap = fast_info.get('market_cap', 'N/A')
         high_52 = fast_info.get('year_high','N/A')
-        low_52 = fast_info.get(year_low','N/A')
+        low_52 = fast_info.get('year_low','N/A')
         ma_50 = fast_info.get('fifty_day_average','N/A')
         ma_200 = fast_info.get('two_hundred_day_average','N/A')
         rsi = get_rsi(ticker_sym)
