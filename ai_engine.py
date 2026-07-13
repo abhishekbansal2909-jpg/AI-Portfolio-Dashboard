@@ -65,7 +65,7 @@ def run_ai_analysis():
 
         #pull top3 news on ticker
         news_list = ticker.news
-        news_headlines = "\n".join([n['title'] for n in news_list[:3]]) if news_list else "No recent news available."
+        news_headlines = "\n".join([n.get('title', 'Market News Update') for n in news_list[:3]]) if news_list else "No recent news available."
 
         if pe_ratio != 'N\A': pe_ratio = round(pe_ratio, 2)
 
