@@ -5,6 +5,25 @@ from ui_components import color_verdict, display_chart
 import sqlite3
 import sqlalchemy
 from sqlalchemy import create_engine, inspect
+import requests
+
+def send_telegram_alert(token, chat_id, message):
+  """Sends an instant push notification via Telegram Bot API."""
+  url = f"https://api.telegram.org/bot{token}/sendMessage"
+  payload = {
+    "chat_id": chat_id,
+    "text": message,
+    "parse_mode": "Markdown"
+  }
+  try:
+    response = requests.post(url, json = payload, timeout = 10)
+    if response.status_code == 200:
+      print("Telegram alert dispatched successfully,")
+    else:
+      print(f"Failed to send Telegram alert. Status code: {response.status_code}")
+
+  except Exception as e:
+    print(f"Error sending Telegram alert: {e}")
 
 #1. Page Configuration (Makes it look clean and widescreen)
 st.set_page_config(page_title="AI Portfolio Dashboard", layout="wide", initial_sidebar_state="expanded")
